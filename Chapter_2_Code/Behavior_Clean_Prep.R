@@ -22,7 +22,7 @@ cross.b <- cross.b %>% separate(date, c("month","day","year"))
 # Format month to a numerical value - if April assign a 4 else a 5 - only dealing with April and May
 cross.b$month.2 <- ifelse(cross.b$month == "April", 4,5)
 
-#Drop the old month column
+# Drop the old month column
 cross.b <- select(cross.b, bird.ID, day, year, behavior, month.2)
 
 # Reunite columns into correct format - date tells it the new column to make
