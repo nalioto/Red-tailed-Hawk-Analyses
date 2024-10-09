@@ -2,7 +2,7 @@
 
 ## Project Background
 This Respository is set up to contain the code for all of my dissertation chapters that are focused on various aspects of the migratory ecology of Red-tailed Hawks *Buteo jamaicensis* that migrate through the Straits of Mackinac in Michigan.
-Each chapters code is stored in separarte folders where the code used to clean/prep the data and run each analysis will be provided. The actual movement data will not be stored here but can be made available upon reasonable request.
+Each chapter has its own folder where the code used to clean/prep the data and run each analysis will be provided. The actual movement data will not be stored here but can be made available upon reasonable request.
 
 
 ### Chapter 2
