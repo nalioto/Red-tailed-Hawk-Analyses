@@ -10,4 +10,4 @@ The code in this particular folder was used to run the analysis for the manuscri
 
 
 ### Acknowledgements 
-This project is a collaboration between the **Mackinac Straits Raptor Watc**, **The Red-tailed Hawk Project**, and **Michigan State University**.
+This project is a collaboration between the **Mackinac Straits Raptor Watch**, **The Red-tailed Hawk Project**, and **Michigan State University**.
