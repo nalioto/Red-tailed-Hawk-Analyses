@@ -6,7 +6,7 @@ Each chapter has its own folder where the code used to clean/prep the data and r
 
 
 ### Chapter 2
-The code in this particular folder was used to run the analysis for the manuscript by _Alioto et al._ titled: **Crossing the Strait: Wind and Uplift facilitate route selection for a soaring migrant in spring**. This manuscript is in prep and is being submitted to *movement ecology*. The code in this folder cleans both the weather and behavioural data and then a separate script merges the two together. Finally a script to run the GAMM (_Generalized Additive Mixed Models_) and create the correpsonding plots of the interactions among covariates is provided.
+The code in this particular folder was used to run the analysis for the manuscript by _Alioto et al._ titled: **Crossing the Strait: Wind and Uplift facilitate route selection for a soaring migrant in spring**. This manuscript is in prep and is being submitted to *movement ecology*. The code in this folder cleans both the weather and behavioural data and then a separate script merges the two together. Finally a script to run the GAMMs (_Generalized Additive Mixed Models_) and create the correpsonding plots of the interactions among covariates is provided.
 
 
 ### Acknowledgements 
