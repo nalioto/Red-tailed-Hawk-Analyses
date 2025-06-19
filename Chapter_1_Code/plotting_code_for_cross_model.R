@@ -145,5 +145,41 @@ ggplot(V_data, aes(x = V, y = estimate__)) +
   theme(
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank(),
-    panel.border = element_rect(color = "black", fill = NA, linewidth = 0.8)
-  )
+    panel.border = element_rect(color = "black", fill = NA, linewidth = 0.8))
+
+############################
+# Code that produces Fig 2 #
+# in the Additional File for #
+# Alioto et al. 2025 - Movement Ecology #
+#########################################
+
+library(tidyverse)
+
+# You need the full.dat data frame that was used in the crossing analysis in 
+# order to use the code below.
+
+# Step 1: Make 'crossing' factor from binary indicator
+full.dat <- full.dat %>%
+  mutate(crossing = case_when(
+    all.crosses == 1 ~ "Crossed",
+    no.cross == 1 ~ "No Cross",
+    TRUE ~ NA_character_
+  ))
+
+# Step 2: Pivot atmospheric variables into long format
+long.dat <- full.dat %>%
+  pivot_longer(cols = c(average.WSP, average.delta.t, V),  # Variables from analysis
+               names_to = "variable",
+               values_to = "value") %>%
+  filter(!is.na(crossing))  # In case some rows don't match either category
+
+# Step 3: Plot
+ggplot(long.dat, aes(x = crossing, y = value, fill = crossing)) +
+  geom_boxplot(alpha = 0.7) +
+  facet_wrap(~ variable, scales = "free_y") +
+  labs(x = "Crossing Behavior", y = "Value", title = "Atmospheric Conditions on Crossing vs Non-Crossing Days") +
+  scale_fill_manual(values = c("No Cross" = "#D55E00", "Crossed" = "#009E73")) +
+  theme_minimal(base_size = 14) +
+  theme(legend.position = "none")
+
+    
