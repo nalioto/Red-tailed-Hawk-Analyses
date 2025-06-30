@@ -277,19 +277,51 @@ plot(conditional_effects(out.c4, effects = "average.WSP"), points = TRUE)
 plot(conditional_effects(out.c4, effects = "average.delta.t"), points = TRUE)
 
 
+
+############
+# Model 5 #
+###########
+out.c5 <- brm(formula = all.crosses ~  scale(average.WSP) + scale(V) + scale(average.delta.t) + scale(julian.day)  + (1|bird.ID), 
+              data = full.dat, 
+              family = bernoulli(link = 'logit'),
+              warmup = 1000, 
+              iter = 5000, 
+              chains = 3, 
+              init = 'random', 
+              cores = 1, 
+              seed = 123)
+out.c5 <- add_criterion(out.c5, "loo") # Need to add loo criterion to model
+pp_check(out.c5, ndraws = 100)
+
+summary(out.c5)
+pairs(out.c5)
+
+# Conditional Effects Plots for coefficients 
+
+# Julian Day
+plot(conditional_effects(out.c5, effects = "julian.day"), points = TRUE)
+
+# Wind speed
+plot(conditional_effects(out.c5, effects = "average.WSP"), points = TRUE)
+
+# Delta T (uplift over Water)
+plot(conditional_effects(out.c5, effects = "average.delta.t"), points = TRUE)
+
+# Wind Support
+plot(conditional_effects(out.c5, effects = "V"), points = TRUE)
+
 #################################
 # Model Comparison & Validation # 
 #################################
 
-loo_compare(out.c1, out.c2, out.c3, out.c4, criterion = c("loo"))
+loo_compare(out.c1, out.c2, out.c3, out.c4, out.c5, criterion = c("loo"))
 
-#             elpd_diff      se_diff
-#      out.c4  0.0          0.0   # Model 4 has the highest predictive accuracy and best fit to data
-#      out.c2 -0.2          2.2   
-#      out.c1 -5.8          4.7   
-#      out.c3 -6.3          4.5   
-
-
+#           elpd_diff    se_diff
+# out.c5         0.0       0.0   
+# out.c4        -1.4       2.4   
+# out.c2        -1.7       3.9   
+# out.c1        -6.5       5.2   
+# out.c3        -7.4       4.7   
 
 
 #########################################################
