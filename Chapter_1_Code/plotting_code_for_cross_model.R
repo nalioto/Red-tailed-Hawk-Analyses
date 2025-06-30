@@ -13,7 +13,7 @@ library(ggplot2)
 # 1.) Julian Date
 
 # Generate conditional effects
-jd <- conditional_effects(out.c4, effects = "julian.day", points = TRUE)
+jd <- conditional_effects(out.c5, effects = "julian.day", points = TRUE)
 
 # Extract the first plot data (since conditional_effects returns a list of plots)
 jd_data <- jd$julian.day
@@ -38,7 +38,7 @@ ggplot(jd_data, aes(x = julian.day, y = estimate__)) +
 # 2.) Wind Speed
 
 # Wind speed
-ws_effects <- conditional_effects(out.c4, effects = "average.WSP", points = TRUE)
+ws_effects <- conditional_effects(out.c5, effects = "average.WSP", points = TRUE)
 
 # Extract the first plot data (since conditional_effects returns a list of plots)
 ws_data <- ws_effects$average.WSP
@@ -64,7 +64,7 @@ ggplot(ws_data, aes(x = average.WSP, y = estimate__)) +
 # 3.) Delta T plot
 
 # Delta T (uplift over Water)
-dt_effects <- conditional_effects(out.c4, effects = "average.delta.t", points = TRUE)
+dt_effects <- conditional_effects(out.c5, effects = "average.delta.t", points = TRUE)
 
 # Extract the first plot data (since conditional_effects returns a list of plots)
 dt_data <- dt_effects$average.delta.t
@@ -91,7 +91,7 @@ ggplot(dt_data, aes(x = average.delta.t, y = estimate__)) +
 
 # Visualize the random effects
 # Extract random effects (posterior means & CIs for bird.ID)
-ranefs <- ranef(out.c4)$bird.ID[, , 1]  # Extract only intercepts
+ranefs <- ranef(out.c5)$bird.ID[, , 1]  # Extract only intercepts
 
 # Convert to a dataframe for plotting
 ranef_df <- data.frame(
@@ -119,36 +119,8 @@ ggplot(ranef_df, aes(x = bird.ID, y = estimate)) +
   theme_minimal()
 
 
-######################################################################
-# Plot for Additional File on the effect of wind support on crossing #
-#####################################################################
-
-# 5.) Wind support V wind
-
-# Wind speed
-v_effects <- conditional_effects(out.c1, effects = "V", points = TRUE)
-
-# Extract the first plot data (since conditional_effects returns a list of plots)
-V_data <- v_effects$V
-
-ggplot(V_data, aes(x = V, y = estimate__)) +
-  geom_line(color = "black", linewidth = 1.3) +
-  geom_ribbon(aes(ymin = lower__, ymax = upper__), fill = "darkgreen", alpha = 0.3) +
-  geom_point(data = full.dat, aes(x = V, y = all.crosses),
-             shape = 16, size = 2) +
-  scale_y_continuous(
-    breaks = seq(0, 1, by = 0.25),
-    limits = c(0, 1)
-  ) +
-  labs(x = "Wind Support", y = "Probability of Crossing") +
-  theme_minimal() +
-  theme(
-    panel.grid.major = element_blank(),
-    panel.grid.minor = element_blank(),
-    panel.border = element_rect(color = "black", fill = NA, linewidth = 0.8))
-
 ############################
-# Code that produces Fig 2 #
+# Code that produces Fig 1 #
 # in the Additional File for #
 # Alioto et al. 2025 - Movement Ecology #
 #########################################
