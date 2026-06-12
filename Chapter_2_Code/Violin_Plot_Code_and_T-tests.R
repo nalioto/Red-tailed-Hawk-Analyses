@@ -191,35 +191,5 @@ ggplot(metrics_subset2, aes(x = season, y = Value, fill = season)) +
   theme(legend.position = "bottom",
         strip.text = element_text(size = 13))
 
-##################################
-# T-tests for Migration Metrics  #
-##################################
-
-# Non-Normality Test
-shapiro.test(log(metrics$total.dist[metrics$season == "spring"])) # p =  6.898e-05
-shapiro.test(log(metrics$total.dist[metrics$season == "fall"])) # p = 1.236e-07
-
-shapiro.test(log(metrics$duration.days[metrics$season == "spring"])) # p =  0.1129
-shapiro.test(log(metrics$duration.days[metrics$season == "fall"])) # p =  0.4395
-
-shapiro.test(log(metrics$speed[metrics$season == "spring"])) # p = 0.8901
-shapiro.test(log(metrics$speed[metrics$season == "fall"])) # p =  0.495
-
-shapiro.test(metrics$straightness[metrics$season == "spring"]) # p = 0.1597
-shapiro.test(metrics$straightness[metrics$season == "fall"]) # p = 6467
-
-# Convert season to factor
-metrics$season <- as.factor(metrics$season)
-str(metrics)
-
-# T-tests
-# After using a shapiro test to test for normality and log transforming to try and
-# normalize the data all metrics except for total.dist were normal so we will run
-# t.tests on all metrics and a wilcox test on total distance
-
-t.test(straightness ~ season, data = metrics)
-t.test(log(duration.days) ~ season, data = metrics)
-t.test(log(speed) ~ season, data = metrics)
-wilcox.test(total.dist ~ season, data = metrics, exact = FALSE)
 
 
