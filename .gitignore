@@ -1,6 +1,50 @@
+# RStudio
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+
+# Local working directories (not for GitHub)
+Chapter.1/
+Chapter.2/
+Chapter.3/
+RTHA Winter Ranges/
+Individual.fall.rast/
+Individual.spr.rast/
+Cumulative Spring Raster UD/
+Red-tailed-Hawk-Analyses/
+src/
+
+# Data folders
 Data/
 
+# Data files
+*.csv
+*.xlsx
+*.xls
+*.zip
+
+# Rasters and spatial data
+*.tif
+*.tiff
+*.grd
+*.gri
+*.aux.xml
+
+# Shapefiles
+*.shp
+*.dbf
+*.prj
+*.shx
+*.cpg
+
+# Output files
+*.pdf
+*.png
+*.jpeg
+*.jpg
+*.gif
+
+# OS files
+Thumbs.db
+.DS_Store
